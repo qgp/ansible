@@ -1,0 +1,9 @@
+---
+- name: Install @powerweek
+  portage: package=@powerweek state=installed
+- name: Configure LDAP authentication
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'ldap/nsswitch.conf', dest: '/etc/' }
+    - { src: 'ldap/ldap.conf', dest: '/etc/' }
+    - { src: 'ldap/openldap/ldap.conf', dest: '/etc/openldap/' }
