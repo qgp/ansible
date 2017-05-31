@@ -1,9 +1,15 @@
 ---
+- name: Configure portage
+  copy: src=make.conf dest=/etc/portage/
+
 - name: Install @powerweek
-  portage: package=@powerweek state=installed
+  portage: package=@powerweek state=latest
+
 - name: Configure LDAP authentication
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - { src: 'ldap/nsswitch.conf', dest: '/etc/' }
+    - { src: 'ldap/system-auth', dest: '/etc/pam.d/' }
+    - { src: 'ldap/system-login', dest: '/etc/pam.d/' }
     - { src: 'ldap/ldap.conf', dest: '/etc/' }
     - { src: 'ldap/openldap/ldap.conf', dest: '/etc/openldap/' }
