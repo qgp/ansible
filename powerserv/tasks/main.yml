@@ -1,6 +1,9 @@
 ---
 - name: Configure portage
-  copy: src=make.conf dest=/etc/portage/
+  template: src=make.conf.j2 dest=/etc/portage/make.conf
+
+- name: Update qgp repository
+  action: shell emaint sync -r qgp
 
 - name: Install @powerweek
   portage: package=@powerweek state=latest
@@ -13,3 +16,6 @@
     - { src: 'ldap/system-login', dest: '/etc/pam.d/' }
     - { src: 'ldap/ldap.conf', dest: '/etc/' }
     - { src: 'ldap/openldap/ldap.conf', dest: '/etc/openldap/' }
+
+- name: Configure ssh
+  copy: src=sshd_config dest=/etc/ssh/

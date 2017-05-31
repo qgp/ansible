@@ -7,7 +7,7 @@ PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
 
-MAKEOPTS="-j 16"
+MAKEOPTS="-j {{ ansible_processor_vcpus }}"
 
 FEATURES="sandbox fakeroot parallel-fetch splitdebug buildpkg"
 
