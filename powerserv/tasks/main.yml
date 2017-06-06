@@ -2,11 +2,11 @@
 - name: Configure portage
   template: src=make.conf.j2 dest=/etc/portage/make.conf
 
-- name: Update qgp repository
-  action: shell emaint sync -r qgp
+#- name: Update qgp repository
+#  action: shell emaint sync -r qgp
 
-- name: Install @powerweek
-  portage: package=@powerweek state=latest
+#- name: Install @powerweek
+#  portage: package=@powerweek state=latest
 
 - name: Configure LDAP authentication
   copy: src={{ item.src }} dest={{ item.dest }}
@@ -19,3 +19,6 @@
 
 - name: Configure ssh
   copy: src=sshd_config dest=/etc/ssh/
+
+- name: Fix Qt
+  copy: src=90_xkb.sh dest=/etc/profile.d/
