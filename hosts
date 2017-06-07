@@ -1,0 +1,16 @@
+[servers]
+power1
+power2
+power3
+power4
+
+[slaves]
+power1
+power2
+power4
+
+[test]
+power3
+
+[local]
+127.0.0.1
