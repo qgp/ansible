@@ -4,5 +4,16 @@
     - group_by: key=os_{{ ansible_distribution }}
 
 - hosts: os_Gentoo
+  gather_facts: False
   roles:
     - gentoo
+
+- hosts: chroot
+  gather_facts: False
+  user: root
+  connection: chroot
+  pre_tasks:
+    - name: fix hosts file in chroot
+      command:
+        cp /etc/hosts /etc/hosts.ansible-saved
+        creates=/etc/hosts.ansible-saved

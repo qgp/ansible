@@ -14,3 +14,6 @@ power3
 
 [local]
 127.0.0.1
+
+[chroot]
+/data/gentoo/rootfs
