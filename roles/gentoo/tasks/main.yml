@@ -1,0 +1,6 @@
+---
+- name: Configure portage
+  template: src=make.conf.j2 dest=/etc/portage/make.conf
+
+#- name: Update qgp repository
+#  action: shell emaint sync -r qgp
