@@ -2,5 +2,14 @@
 - name: Configure portage
   template: src=make.conf.j2 dest=/etc/portage/make.conf
 
-#- name: Update qgp repository
-#  action: shell emaint sync -r qgp
+- name: Update qgp repository
+  action: shell emaint sync -r qgp
+
+- name: Install kernel sources
+  portage: package=sys-kernel/gentoo-sources state=latest
+
+- name: Build kernel
+  shell: "cd /usr/src/linux && make defconfig && make -j 8 && make install && make modules_install"
+
+- name: Install GRUB
+  portage: package=grub state=latest

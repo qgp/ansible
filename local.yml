@@ -1,19 +1,67 @@
 ---
-- hosts: all
-  tasks:
-    - group_by: key=os_{{ ansible_distribution }}
-
-- hosts: os_Gentoo
-  gather_facts: False
+- hosts: localhost
   roles:
-    - gentoo
+    - { role: gentoo, when: "ansible_os_family == 'Gentoo'" }
 
 - hosts: chroot
   gather_facts: False
   user: root
   connection: chroot
   pre_tasks:
-    - name: fix hosts file in chroot
-      command:
-        cp /etc/hosts /etc/hosts.ansible-saved
-        creates=/etc/hosts.ansible-saved
+    - name: Download stage3
+      connection: local
+      shell:
+        cd /data/gentoo && curl -O http://mirror.netcologne.de/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20170708.tar.bz2
+        creates=/data/gentoo/stage3-amd64-systemd-20170708.tar.bz2
+    - name: Unpack stage 3
+      connection: local
+      shell:
+        tar xfj stage3-amd64-systemd-20170708.tar.bz2 -C /data/gentoo/rootfs
+        creates=/data/gentoo/rootfs
+    - name: Prepare chroot {{ inventory_hostname }}
+      shell:
+        mount '{{ item.option }}' '{{ item.name }}' '/data/gentoo/rootfs/{{ item.name }}'
+      args:
+        creates: '/data/gentoo/rootfs/{{ item.name }}/{{ item.creates }}'
+      connection: local
+      with_items:
+        - name: /proc
+          creates: 1
+          option: '-tproc'
+        - name: /sys
+          creates: class
+          option: '--rbind'
+        - name: /dev
+          creates: bus
+          option: '--rbind'
+  roles:
+    - gentoo
+  post_tasks:
+    - name: Unmount filesystems
+      shell:
+        umount '{{ item.option | default() }}' /data/gentoo/rootfs/'{{ item.name }}'
+      connection: local
+      with_items:
+        - name: '/proc'
+          option: '-l'
+        - name: /dev/shm
+          option: '-l'
+        - name: /dev/pts
+          option: '-l'
+        - name: /dev
+          option: '-l'
+        - name: /sys
+          option: '-R'
+
+#- hosts: servers
+#  roles:
+#    - { role: gentoo, when: "ansible_os_family == 'Gentoo'" }
+
+#- hosts: all
+#  tasks:
+#    - group_by: key=os_{{ ansible_distribution }}
+
+#- hosts: os_Gentoo
+#  gather_facts: False
+#  roles:
+#    - gentoo
