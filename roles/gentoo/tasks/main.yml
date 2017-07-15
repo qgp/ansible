@@ -2,14 +2,66 @@
 - name: Configure portage
   template: src=make.conf.j2 dest=/etc/portage/make.conf
 
-- name: Update qgp repository
-  action: shell emaint sync -r qgp
+- name: Create repos.conf
+  file:
+    path: /etc/portage/repos.conf
+    state: directory
 
-- name: Install kernel sources
-  portage: package=sys-kernel/gentoo-sources state=latest
+- name: Add gentoo repository
+  copy:
+    src: /usr/share/portage/config/repos.conf
+    dest: /etc/portage/repos.conf/gentoo.conf
 
-- name: Build kernel
-  shell: "cd /usr/src/linux && make defconfig && make -j 8 && make install && make modules_install"
+- name: Add qgp repository
+  copy:
+    src: qgp.conf
+    dest: /etc/portage/repos.conf/qgp.conf
 
-- name: Install GRUB
-  portage: package=grub state=latest
+- name: Initialize portage
+  tags: test
+  shell:
+    emerge-webrsync
+    creates=/usr/portage
+
+- name: Install gentoolkit
+  shell:
+    emerge -n gentoolkit
+    creates=/usr/bin/equery
+
+- name: Install git
+  portage: package=dev-vcs/git state=latest
+
+- name: Update repositories
+  tags: init
+  shell:
+    emerge --sync
+
+#- name: Update qgp repository
+#  action: shell emaint sync -r qgp
+
+- name: Select profile
+  shell:
+    eselect profile set qgp:default/systemd
+
+- name: Update @world
+  shell:
+    emerge -DuN @world
+
+- name: Install kernel sources & GRUB
+  portage:
+    state=latest
+    package=sys-kernel/gentoo-sources
+    package=grub
+
+#- name: Build kernel
+#  shell: "cd /usr/src/linux && make defconfig && scripts/config -d CONFIG_BLK_DEV_INITRD && make -j 8 && make install && make modules_install"
+
+- name: Install packages
+  portage:
+    state: latest
+    package:
+      - netifrc
+      - syslog-ng
+      - fcron
+      - openssh
+      - dhcpcd

@@ -13,11 +13,22 @@
       shell:
         cd /data/gentoo && curl -O http://mirror.netcologne.de/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20170708.tar.bz2
         creates=/data/gentoo/stage3-amd64-systemd-20170708.tar.bz2
+    - name: Create rootfs
+      connection: local
+      file:
+        path: /data/gentoo/rootfs
+        state: directory
     - name: Unpack stage 3
       connection: local
-      shell:
-        tar xfj stage3-amd64-systemd-20170708.tar.bz2 -C /data/gentoo/rootfs
-        creates=/data/gentoo/rootfs
+      unarchive:
+        src: /data/gentoo/stage3-amd64-systemd-20170708.tar.bz2
+        dest: /data/gentoo/rootfs
+        creates: /data/gentoo/rootfs/etc
+    - name: Copy resolv.conf
+      connection: local
+      copy:
+        src: /etc/resolv.conf
+        dest: /data/gentoo/rootfs/etc/
     - name: Prepare chroot {{ inventory_hostname }}
       shell:
         mount '{{ item.option }}' '{{ item.name }}' '/data/gentoo/rootfs/{{ item.name }}'
