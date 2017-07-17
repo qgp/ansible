@@ -1,0 +1,6 @@
+---
+- name: Install common user packages
+  package:
+    state: latest
+    name:
+      - emacs

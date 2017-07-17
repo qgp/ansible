@@ -1,47 +1,45 @@
 ---
-- name: Configure portage
-  template: src=make.conf.j2 dest=/etc/portage/make.conf
+- block:
+  - name: Configure portage
+    template: src=make.conf.j2 dest=/etc/portage/make.conf
 
-- name: Create repos.conf
-  file:
-    path: /etc/portage/repos.conf
-    state: directory
+  - name: Create repos.conf
+    file:
+      path: /etc/portage/repos.conf
+      state: directory
 
-- name: Add gentoo repository
-  copy:
-    src: /usr/share/portage/config/repos.conf
-    dest: /etc/portage/repos.conf/gentoo.conf
+  - name: Add gentoo repository
+    copy:
+      src: /usr/share/portage/config/repos.conf
+      dest: /etc/portage/repos.conf/gentoo.conf
 
-- name: Add qgp repository
-  copy:
-    src: qgp.conf
-    dest: /etc/portage/repos.conf/qgp.conf
+  - name: Add qgp repository
+    copy:
+      src: qgp.conf
+      dest: /etc/portage/repos.conf/qgp.conf
+    notify: "sync portage"
 
-- name: Initialize portage
-  tags: test
-  shell:
-    emerge-webrsync
-    creates=/usr/portage
+  - name: Initialize portage
+    tags: test
+    shell:
+      emerge-webrsync
+      creates=/usr/portage
+    notify: "sync portage"
 
-- name: Install gentoolkit
-  shell:
-    emerge -n gentoolkit
-    creates=/usr/bin/equery
+  - name: Install gentoolkit
+    shell:
+      emerge -n gentoolkit
+      creates=/usr/bin/equery
 
-- name: Install git
-  portage: package=dev-vcs/git state=latest
+  - name: Install git
+    portage: package=dev-vcs/git state=latest
 
-- name: Update repositories
-  tags: init
-  shell:
-    emerge --sync
+  - name: Select profile
+    shell:
+      eselect profile set qgp:default/systemd
 
-#- name: Update qgp repository
-#  action: shell emaint sync -r qgp
-
-- name: Select profile
-  shell:
-    eselect profile set qgp:default/systemd
+  always:
+   - meta: flush_handlers
 
 - name: Update @world
   shell:

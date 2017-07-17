@@ -13,7 +13,11 @@ power4
 power3
 
 [local]
-127.0.0.1
+pcjkl
+tpjkl
+
+[vsrv]
+vsrv03.qgp.io ansible_user=root
 
 [chroot]
 /data/gentoo/rootfs

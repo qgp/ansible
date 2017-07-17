@@ -1,0 +1,6 @@
+---
+- name: Update repositories
+  tags: init
+  shell:
+    emerge --sync
+  listen: "sync portage"

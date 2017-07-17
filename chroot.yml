@@ -1,0 +1,61 @@
+---
+- hosts: chroot
+  gather_facts: False
+  user: root
+  connection: chroot
+  pre_tasks:
+    - name: Download stage3
+      connection: local
+      shell:
+        cd /data/gentoo && curl -O http://mirror.netcologne.de/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20170708.tar.bz2
+        creates=/data/gentoo/stage3-amd64-systemd-20170708.tar.bz2
+    - name: Create rootfs
+      connection: local
+      file:
+        path: /data/gentoo/rootfs
+        state: directory
+    - name: Unpack stage 3
+      connection: local
+      unarchive:
+        src: /data/gentoo/stage3-amd64-systemd-20170708.tar.bz2
+        dest: /data/gentoo/rootfs
+        creates: /data/gentoo/rootfs/etc
+    - name: Copy resolv.conf
+      connection: local
+      copy:
+        src: /etc/resolv.conf
+        dest: /data/gentoo/rootfs/etc/
+    - name: Prepare chroot {{ inventory_hostname }}
+      shell:
+        mount '{{ item.option }}' '{{ item.name }}' '/data/gentoo/rootfs/{{ item.name }}'
+      args:
+        creates: '/data/gentoo/rootfs/{{ item.name }}/{{ item.creates }}'
+      connection: local
+      with_items:
+        - name: /proc
+          creates: 1
+          option: '-tproc'
+        - name: /sys
+          creates: class
+          option: '--rbind'
+        - name: /dev
+          creates: bus
+          option: '--rbind'
+  roles:
+    - gentoo
+  post_tasks:
+    - name: Unmount filesystems
+      shell:
+        umount '{{ item.option | default() }}' /data/gentoo/rootfs/'{{ item.name }}'
+      connection: local
+      with_items:
+        - name: '/proc'
+          option: '-l'
+        - name: /dev/shm
+          option: '-l'
+        - name: /dev/pts
+          option: '-l'
+        - name: /dev
+          option: '-l'
+        - name: /sys
+          option: '-R'
