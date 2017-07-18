@@ -1,13 +1,29 @@
 CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
-USE="mmx sse sse2"
+CPU_FLAGS_X86="mmx mmxext sse sse2 sse3"
+
+FEATURES=""
+USE="
+X xcb dri
+png jpeg gif tiff pdf cairo
+emacs vim-syntax
+git subversion
+ssl kerberos
+cups
+"
 
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
 
-MAKEOPTS="-j {{ ansible_processor_vcpus | default('8') }}"
+MAKEOPTS="-j {{ ansible_processor_vcpus | default(8) }}"
 
+LINGUAS="en de fr it"
+
+{% if gentoo_video_cards is defined %}
 VIDEO_CARDS="{{ gentoo_video_cards }}"
+{% endif %}
+{% if gentoo_input_devices is defined %}
 INPUT_DEVICES="{{ gentoo_input_devices }}"
+{% endif %}

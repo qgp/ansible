@@ -6,12 +6,3 @@
 #- hosts: servers
 #  roles:
 #    - { role: gentoo, when: "ansible_os_family == 'Gentoo'" }
-
-#- hosts: all
-#  tasks:
-#    - group_by: key=os_{{ ansible_distribution }}
-
-#- hosts: os_Gentoo
-#  gather_facts: False
-#  roles:
-#    - gentoo

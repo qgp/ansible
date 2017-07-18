@@ -1,7 +1,13 @@
 ---
 - block:
+  - name: test
+    debug:
+      msg: "msg: {{ ar[0], ar[2] }}"
+
   - name: Configure portage
-    template: src=make.conf.j2 dest=/etc/portage/make.conf
+    template:
+      src: make.conf.j2
+      dest: /portage/make.conf
 
   - name: Create repos.conf
     file:
@@ -10,7 +16,7 @@
 
   - name: Add gentoo repository
     copy:
-      src: /usr/share/portage/config/repos.conf
+      src: gentoo.conf
       dest: /etc/portage/repos.conf/gentoo.conf
 
   - name: Add qgp repository
@@ -21,15 +27,15 @@
 
   - name: Initialize portage
     tags: test
-    shell:
-      emerge-webrsync
-      creates=/usr/portage
+    shell: emerge-webrsync
+    args:
+      creates: /usr/portage
     notify: "sync portage"
 
   - name: Install gentoolkit
-    shell:
-      emerge -n gentoolkit
-      creates=/usr/bin/equery
+    shell: emerge -n gentoolkit
+    args:
+      creates: /usr/bin/equery
 
   - name: Install git
     portage: package=dev-vcs/git state=latest
@@ -52,14 +58,17 @@
    - meta: flush_handlers
 
 - name: Update @world
-  shell:
-    emerge -DuN @world
+  portage:
+    package: '@world'
+    update: yes
+    deep: yes
 
 - name: Install kernel sources & GRUB
   portage:
-    state=latest
-    package=sys-kernel/gentoo-sources
-    package=grub
+    state: latest
+    package:
+      - sys-kernel/gentoo-sources
+      - grub
 
 #- name: Build kernel
 #  shell: "cd /usr/src/linux && make defconfig && scripts/config -d CONFIG_BLK_DEV_INITRD && make -j 8 && make install && make modules_install"
