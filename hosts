@@ -4,17 +4,13 @@ power2
 power3
 power4
 
-[slaves]
-power1
-power2
-power4
-
-[test]
+[masters]
 power3
 
-[local]
+[desktop]
 pcjkl
 tpjkl
+xtjkl gentoo_input_devices=evdev gentoo_video_cards=intel
 
 [vsrv]
 vsrv03.qgp.io ansible_user=root

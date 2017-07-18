@@ -4,3 +4,12 @@
     state: latest
     name:
       - emacs
+
+- name: Create users
+  user:
+    name: jklein
+    state: present
+    uid: 1501
+    groups: users
+    shell: /bin/bash
+    generate_ssh_key: yes

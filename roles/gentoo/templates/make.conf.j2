@@ -8,3 +8,6 @@ DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
 
 MAKEOPTS="-j {{ ansible_processor_vcpus | default('8') }}"
+
+VIDEO_CARDS="{{ gentoo_video_cards }}"
+INPUT_DEVICES="{{ gentoo_input_devices }}"

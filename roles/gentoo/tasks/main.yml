@@ -38,6 +38,16 @@
     shell:
       eselect profile set qgp:default/systemd
 
+  - name: Create directory for use flags
+    file:
+      path: /etc/portage/package.use
+      state: directory
+
+  - name: Set use flags
+    copy:
+      src: 00_misc
+      dest: /etc/portage/package.use/00_misc
+
   always:
    - meta: flush_handlers
 

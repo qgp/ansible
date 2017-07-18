@@ -1,8 +1,9 @@
 ---
-- hosts: all
+- hosts: ungrouped
   roles:
     - common
 
 - hosts: desktop
   roles:
     - common
+    - desktop

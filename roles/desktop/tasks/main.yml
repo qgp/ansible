@@ -1,0 +1,7 @@
+- name: Install desktop packages
+  package:
+    name:
+      - xorg-server
+      - xterm
+      - sddm
+      - awesome
