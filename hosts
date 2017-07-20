@@ -10,7 +10,7 @@ power3
 [desktop]
 pcjkl
 tpjkl
-xtjkl gentoo_input_devices=evdev gentoo_video_cards=intel
+xtjkl gentoo_input_devices=evdev gentoo_video_cards=intel gentoo_accept_keywords="~amd64"
 
 [vsrv]
 vsrv03.qgp.io ansible_user=root

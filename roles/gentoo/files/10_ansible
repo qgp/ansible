@@ -6,3 +6,10 @@ dev-libs/libpcre pcre16
 # for awesome
 media-gfx/imagemagick png
 x11-libs/cairo xcb
+
+# for texlive
+app-text/texlive extra humanities science xetex
+
+# for ~amd64
+dev-vcs/subversion -dso perl
+dev-lang/python sqlite

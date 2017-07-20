@@ -4,12 +4,14 @@
     state: latest
     name:
       - emacs
+      - sudo
 
 - name: Create users
+  tags: user
   user:
     name: jklein
     state: present
     uid: 1501
-    groups: users
+    groups: users,wheel
     shell: /bin/bash
     generate_ssh_key: yes

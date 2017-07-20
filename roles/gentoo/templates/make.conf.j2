@@ -3,6 +3,9 @@ CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
 CPU_FLAGS_X86="mmx mmxext sse sse2 sse3"
 
+{% if gentoo_accept_keywords is defined %}
+ACCEPT_KEYWORDS="{{ gentoo_accept_keywords }}"
+{% endif %}
 FEATURES=""
 USE="
 X xcb dri

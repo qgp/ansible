@@ -5,3 +5,5 @@
       - xterm
       - sddm
       - awesome
+      - vicious
+      - texlive

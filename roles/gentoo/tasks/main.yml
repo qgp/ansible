@@ -7,7 +7,7 @@
   - name: Configure portage
     template:
       src: make.conf.j2
-      dest: /portage/make.conf
+      dest: /etc//portage/make.conf
 
   - name: Create repos.conf
     file:
@@ -38,7 +38,7 @@
       creates: /usr/bin/equery
 
   - name: Install git
-    portage: package=dev-vcs/git state=latest
+    portage: package=dev-vcs/git state=present
 
   - name: Select profile
     shell:
@@ -51,8 +51,8 @@
 
   - name: Set use flags
     copy:
-      src: 00_misc
-      dest: /etc/portage/package.use/00_misc
+      src: 10_ansible
+      dest: /etc/portage/package.use/10_ansible
 
   always:
    - meta: flush_handlers
@@ -63,22 +63,17 @@
     update: yes
     deep: yes
 
-- name: Install kernel sources & GRUB
+- name: Install packages
   portage:
     state: latest
     package:
       - sys-kernel/gentoo-sources
       - grub
-
-#- name: Build kernel
-#  shell: "cd /usr/src/linux && make defconfig && scripts/config -d CONFIG_BLK_DEV_INITRD && make -j 8 && make install && make modules_install"
-
-- name: Install packages
-  portage:
-    state: latest
-    package:
       - netifrc
       - syslog-ng
       - fcron
       - openssh
       - dhcpcd
+
+#- name: Build kernel
+#  shell: "cd /usr/src/linux && make defconfig && scripts/config -d CONFIG_BLK_DEV_INITRD && make -j 8 && make install && make modules_install"
