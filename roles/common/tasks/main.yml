@@ -15,3 +15,9 @@
     groups: users,wheel
     shell: /bin/bash
     generate_ssh_key: yes
+
+- name: Configure Kerberos
+  tags: krb
+  copy:
+    src: krb5.conf
+    dest: /etc/krb5.conf
