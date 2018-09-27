@@ -3,12 +3,15 @@ CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
 USE="mmx sse sse2"
 
-PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
 
 MAKEOPTS="-j {{ ansible_processor_vcpus }}"
 
+ACCEPT_KEYWORDS="~amd64"
+
 FEATURES="sandbox fakeroot parallel-fetch splitdebug buildpkg"
 
-PORTAGE_BINHOST="ssh://root@power3.power.week/usr/portage/packages"
+PORTAGE_BINHOST="ssh://root@master.power.qgp.io/usr/portage/packages"
+
+PHP_TARGETS=php7-2
