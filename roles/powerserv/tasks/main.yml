@@ -2,7 +2,14 @@
 - name: Configure portage
   template: src=make.conf.j2 dest=/etc/portage/make.conf
 
+- name: Configure gentoo repo
+  template: src=gentoo.conf.j2 dest=/etc/portage/repos.conf/gentoo.conf
+
+- name: Configure qgp repo
+  template: src=qgp.conf.j2 dest=/etc/portage/repos.conf/qgp.conf
+
 - name: Update qgp repository
+  tags: [ 'never', 'debug' ]
   action: shell emaint sync -r qgp
 
 - name: Install @powerweek

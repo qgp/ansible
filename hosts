@@ -1,19 +1,36 @@
-[servers]
-power1
-power2
-power3
-power4
+servers:
+  vars:
+    ansible_user: root
+  children:
+    master:
+      vars:
+        power_master: true
+      hosts:
+        s3.power.qgp.io:
+    slaves:
+      vars:
+        power_master: false
+      hosts:
+        s1.power.qgp.io:
+        s2.power.qgp.io:
+        s4.power.qgp.io:
 
-[masters]
-power3
+desktop:
+  hosts:
+    pcjkl:
+    tpjkl:
+    xtjkl: 
+      vars:
+        gentoo_input_devices: evdev
+        gentoo_video_cards: intel
+        gentoo_accept_keywords: "~amd64"
 
-[desktop]
-pcjkl
-tpjkl
-xtjkl gentoo_input_devices=evdev gentoo_video_cards=intel gentoo_accept_keywords="~amd64"
+vsrv:
+  hosts:
+    vsrv03.qgp.io:
+      vars:
+        ansible_user: root
 
-[vsrv]
-vsrv03.qgp.io ansible_user=root
-
-[chroot]
-/data/gentoo/rootfs
+chroot:
+  hosts:
+    /data/gentoo/rootfs:
