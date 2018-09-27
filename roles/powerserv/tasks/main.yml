@@ -2,14 +2,22 @@
 - name: Configure portage
   template: src=make.conf.j2 dest=/etc/portage/make.conf
 
+- name: Configure package.*
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'package.use', dest: '/etc/portage' }
+    - { src: 'package.accept_keywords', dest: '/etc/portage' }
+    - { src: 'package.license', dest: '/etc/portage' }
+
 - name: Configure gentoo repo
   template: src=gentoo.conf.j2 dest=/etc/portage/repos.conf/gentoo.conf
+  when: not power_master
 
 - name: Configure qgp repo
   template: src=qgp.conf.j2 dest=/etc/portage/repos.conf/qgp.conf
 
 - name: Update qgp repository
-  tags: [ 'never', 'debug' ]
+  tags: [ 'never', 'sync' ]
   action: shell emaint sync -r qgp
 
 - name: Install @powerweek
