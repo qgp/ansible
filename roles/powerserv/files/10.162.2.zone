@@ -1,0 +1,38 @@
+$ORIGIN .
+$TTL 172800	; 2 days
+2.162.10.in-addr.arpa	IN SOA	power.qgp.io. root.power.qgp.io. (
+				2013112842 ; serial
+				86400      ; refresh (1 day)
+				7200       ; retry (2 hours)
+				604800     ; expire (1 week)
+				172800     ; minimum (2 days)
+				)
+			NS	power1.power.qgp.io.
+$ORIGIN 2.162.10.in-addr.arpa.
+$TTL 3600	; 1 hour
+100			PTR	Pauls-MBP.dyn.power.qgp.io.
+102			PTR	Alienware-13.dyn.power.qgp.io.
+103			PTR	DESKTOP-DDUNEU4.dyn.power.qgp.io.
+106			PTR	qon.dyn.power.qgp.io.
+108			PTR	xtjkl.dyn.power.qgp.io.
+109			PTR	milamber.dyn.power.qgp.io.
+116			PTR	Lukas.dyn.power.qgp.io.
+117			PTR	android-1b9d72f036391c38.dyn.power.qgp.io.
+120			PTR	phuhnMacbook.dyn.power.qgp.io.
+121			PTR	tojkl.dyn.power.qgp.io.
+124			PTR	Esthers-MBP-3.dyn.power.qgp.io.
+125			PTR	xps13.dyn.power.qgp.io.
+126			PTR	computer.dyn.power.qgp.io.
+129			PTR	pascal-HP-EliteBook-840-G1.dyn.power.qgp.io.
+130			PTR	philipp-thinkpad.dyn.power.qgp.io.
+133			PTR	pcalitrd01.dyn.power.qgp.io.
+135			PTR	memphis.dyn.power.qgp.io.
+141			PTR	hufflepuff.dyn.power.qgp.io.
+142			PTR	ikfmc12.dyn.power.qgp.io.
+144			PTR	citadel.dyn.power.qgp.io.
+147			PTR	vadim-laptop.dyn.power.qgp.io.
+149			PTR	uranus.dyn.power.qgp.io.
+156			PTR	linux-hellbee.dyn.power.qgp.io.
+161			PTR	PG-PC.dyn.power.qgp.io.
+172			PTR	Marios-MBP.dyn.power.qgp.io.
+193			PTR	Ernsts-MBP.dyn.power.qgp.io.

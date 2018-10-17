@@ -1,0 +1,18 @@
+$ORIGIN .
+$TTL 2D
+162.10.in-addr.arpa     IN SOA  power.qgp.io. root.power.qgp.io. (
+                                2013111905 ; serial
+                                86400      ; refresh (1 day)
+                                7200       ; retry (2 hours)
+                                604800     ; expire (1 week)
+                                172800     ; minimum (2 days)
+                                )
+                        NS      s3.power.qgp.io.
+
+$ORIGIN 162.10.in-addr.arpa.
+$TTL 10800      ; 3 hours
+1.1                   PTR     s1.power.qgp.io.
+2.1                   PTR     s2.power.qgp.io.
+3.1                   PTR     s3.power.qgp.io.
+4.1                   PTR     s4.power.qgp.io.
+

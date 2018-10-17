@@ -1,27 +1,27 @@
 ---
-- name: Configure portage
-  template: src=make.conf.j2 dest=/etc/portage/make.conf
+#- name: Configure portage
+#  template: src=make.conf.j2 dest=/etc/portage/make.conf
 
-- name: Configure package.*
-  copy: src={{ item.src }} dest={{ item.dest }}
-  with_items:
-    - { src: 'package.use', dest: '/etc/portage' }
-    - { src: 'package.accept_keywords', dest: '/etc/portage' }
-    - { src: 'package.license', dest: '/etc/portage' }
+#- name: Configure package.*
+#  copy: src={{ item.src }} dest={{ item.dest }}
+#  with_items:
+#    - { src: 'package.use', dest: '/etc/portage' }
+#    - { src: 'package.accept_keywords', dest: '/etc/portage' }
+#    - { src: 'package.license', dest: '/etc/portage' }
 
-- name: Configure gentoo repo
-  template: src=gentoo.conf.j2 dest=/etc/portage/repos.conf/gentoo.conf
-  when: not power_master
-
-- name: Configure qgp repo
-  template: src=qgp.conf.j2 dest=/etc/portage/repos.conf/qgp.conf
-
-- name: Update qgp repository
-  tags: [ 'never', 'sync' ]
-  action: shell emaint sync -r qgp
-
-- name: Install @powerweek
-  portage: package=@powerweek state=latest usepkgonly=yes
+#- name: Configure gentoo repo
+#  template: src=gentoo.conf.j2 dest=/etc/portage/repos.conf/gentoo.conf
+#  when: not power_master
+#
+#- name: Configure qgp repo
+#  template: src=qgp.conf.j2 dest=/etc/portage/repos.conf/qgp.conf
+#
+#- name: Update qgp repository
+#  tags: [ 'never', 'sync' ]
+#  action: shell emaint sync -r qgp
+#
+#- name: Install @powerweek
+#  portage: package=@powerweek state=latest usepkgonly=yes
 
 - name: Configure LDAP authentication
   copy: src={{ item.src }} dest={{ item.dest }}
@@ -32,8 +32,8 @@
     - { src: 'ldap/ldap.conf', dest: '/etc/' }
     - { src: 'ldap/openldap/ldap.conf', dest: '/etc/openldap/' }
 
-- name: Configure ssh
-  copy: src=sshd_config dest=/etc/ssh/
-
-- name: Fix Qt
-  copy: src=90_xkb.sh dest=/etc/profile.d/
+#- name: Configure ssh
+#  copy: src=sshd_config dest=/etc/ssh/
+#
+#- name: Fix Qt
+#  copy: src=90_xkb.sh dest=/etc/profile.d/

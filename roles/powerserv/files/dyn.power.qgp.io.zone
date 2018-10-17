@@ -1,0 +1,126 @@
+$ORIGIN .
+$TTL 172800	; 2 days
+dyn.power.qgp.io	IN SOA	power.qgp.io. root.power.qgp.io. (
+				18101038   ; serial
+				86400      ; refresh (1 day)
+				7200       ; retry (2 hours)
+				604800     ; expire (1 week)
+				172800     ; minimum (2 days)
+				)
+			NS	s3.power.qgp.io.
+$ORIGIN dyn.power.qgp.io.
+$TTL 3600	; 1 hour
+Alienware-13		A	10.162.2.102
+			TXT	"317c9e929eba7029de645a336ff57d0035"
+android-1b9d72f036391c38 A	10.162.2.117
+			TXT	"3143b6dc40498edd5146ad537a177e67f2"
+android-291d6b50e1b7ceb8 A	10.162.2.173
+			TXT	"31d84b0b7e4d6ac15f1a348f8760a953a5"
+android-47eaf78d89f4753c A	10.162.2.181
+			TXT	"31ec0dbdc5d062103930a27d3b628e8a46"
+android-962ff099d94a1600 A	10.162.2.199
+			TXT	"310e1b06081e14446ed8fea66a47045774"
+android-9eb16f4f8adee326 A	10.162.2.179
+			TXT	"31125879254152e3a70f1475e1b85d5547"
+android-a29854caa03fc5bd A	10.162.2.177
+			TXT	"3115f40a44b9da39501905fa7b80a66c58"
+android-c9e6611b08ee2195 A	10.162.2.191
+			TXT	"315031e21ff28c35db7f2aa4856a4cd347"
+android-f87dd8e297fd2009 A	10.162.2.190
+			TXT	"3195cc49415901f96eb46767693281dc04"
+auk			A	10.162.2.131
+			TXT	"313cd259612147606cad05cc8fd84af100"
+citadel			A	10.162.2.144
+			TXT	"3125f3d4c0686c526f5bdce10608421d52"
+computer		A	10.162.2.126
+			TXT	"006fdc1ef7f62856d02104841de7f8bed3"
+danisch-laptop		A	10.162.2.164
+			TXT	"00440ed2752444d9f59e129aa8c17722d7"
+DESKTOP-DDUNEU4		A	10.162.2.103
+			TXT	"31afdd579407a9a5ad9aff8bcd7c24fbe7"
+emminbg009		A	10.162.2.153
+			TXT	"312372b3a3f088541efa4b9d4f07bd6097"
+Ernsts-MBP		A	10.162.2.193
+			TXT	"3165c33765bb94b454f5e7938a1acf6935"
+Esthers-MBP-3		A	10.162.2.124
+			TXT	"31064a1fc27605d33ef6aa883e495c7fab"
+Glaukonome		A	10.162.2.122
+			TXT	"009a48e92d383f67ec83481a23bfa2194d"
+huetchen-laptop		A	10.162.2.158
+			TXT	"00a695ce2dff398b4ad287c23912cf3bc5"
+hufflepuff		A	10.162.2.141
+			TXT	"006bcb3d28ef347cb00916337743bff37b"
+ikfmc12			A	10.162.2.142
+			TXT	"00d6bca0ed3b326ee307211e28c487deea"
+Lenovo			A	10.162.2.187
+			TXT	"0066e9ca45a4129824ccfbb40352d79318"
+Ligbert			A	10.162.2.110
+			TXT	"001bda94adbc04d7eb8b14dbc9137aa695"
+linux-hellbee		A	10.162.2.156
+			TXT	"31bb28c66be71ccecb529963008f2b20e6"
+lotlorien		A	10.162.2.166
+			TXT	"00f976b3afd01756881b91b2a7375e9b91"
+Lukas			A	10.162.2.116
+			TXT	"31f489f03d037bf1841e4ee55243467d3c"
+MacBook			A	10.162.2.192
+			TXT	"31de0539ecc44439271f20ed22d63a0de5"
+Marios-MBP		A	10.162.2.172
+			TXT	"31634ae18224faa938abec1455053a3eee"
+Melanies-iPhone		A	10.162.2.185
+			TXT	"31ca01b20a1a35935ca4d98356d75d8f71"
+memphis			A	10.162.2.135
+			TXT	"31d05f4a58aeec4cf596e33440500979ff"
+Mesuts-MBP		A	10.162.2.124
+			TXT	"31aeb54536a71249563e9e58651030e589"
+mikolaj			A	10.162.2.150
+			TXT	"31e07265c014a8621f0028a92cc837f476"
+milamber		A	10.162.2.109
+			TXT	"007d694e92221430d982e8089306d9c52a"
+mwx230			A	10.162.2.176
+			TXT	"000fbe970ca5c023fa9c0039befa1a344d"
+nasapc			A	10.162.2.171
+			TXT	"3186b0a995cc006c0a69761aa8a99436c8"
+pascal-HP-EliteBook-840-G1 A	10.162.2.129
+			TXT	"00bca3f960301bdbe48eb1d27290fee568"
+PascalGsiPhone2		A	10.162.2.180
+			TXT	"314da6c59ae5e38f37309cb9319439839b"
+PatrickMBA-2		A	10.162.2.116
+			TXT	"31da78addbc35aad0a574df9206fb45641"
+Patricks-iPhone		A	10.162.2.136
+			TXT	"31ca0de1c2f31368bd9715018854ee7bc1"
+Pauls-MBP		A	10.162.2.100
+			TXT	"310bde2ed27a0b99c71fbd8f3d3e356210"
+pcalitrd01		A	10.162.2.133
+			TXT	"317098ac243593644d3f14a8fed1197bba"
+PG-PC			A	10.162.2.161
+			TXT	"002cbefd8df5c5d2d2131bca6f58f4ce13"
+philipp-thinkpad	A	10.162.2.130
+			TXT	"00e468385b232c7cfc763230ff6bd7be78"
+phuhnMacbook		A	10.162.2.120
+			TXT	"31aa88a7a556605300d1d90abfdbf742de"
+qon			A	10.162.2.106
+			TXT	"31242fcba82347f4113c657d649e197439"
+Samers-MBP		A	10.162.2.168
+			TXT	"31f23589d35d20bd19e454d841bad356ef"
+SaxOnTheBeach		A	10.162.2.167
+			TXT	"00ae55efb6cf7edc97e8c9fe34d83c5211"
+schigum-tp		A	10.162.2.159
+			TXT	"00867c7754c27f50e72c03e88054915635"
+sheckelLaptop		A	10.162.2.120
+			TXT	"31687947e509da1b18b1b50f945587c4a3"
+Theos-MacBook		A	10.162.2.130
+			TXT	"31649dddf751aa72d5888e1035b648920e"
+TL-WA801N		A	10.162.2.103
+			TXT	"31e4ad662dce8c4f343dd398b3221893ac"
+tojkl			A	10.162.2.121
+			TXT	"314375a232b3cca2190a66f1d6d9954dba"
+tpjkl			A	10.162.2.108
+			TXT	"00dbff4ca1a13aad32221662d22b688d59"
+uranus			A	10.162.2.149
+			TXT	"31cfdfa1fd3fe480aabc170713f59b29f6"
+vadim-laptop		A	10.162.2.147
+			TXT	"00b5f6a804eb2fcdbbe2a2b68e8224dc21"
+xps13			A	10.162.2.125
+			TXT	"0079cfef1b18c6001253a94f38d73c6585"
+xtjkl			A	10.162.2.108
+			TXT	"31d6e6d36c3e49c630fd850f21b274430c"

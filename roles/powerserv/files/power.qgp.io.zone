@@ -1,0 +1,16 @@
+$TTL 2H
+@       IN      SOA     power.qgp.io. root.power.qgp.io.  (
+                                      2017060704 ; Serial
+                                      28800      ; Refresh
+                                      14400      ; Retry
+                                      604800     ; Expire - 1 week
+                                      86400 )    ; Minimum
+
+@ IN NS s3.power.qgp.io.
+
+master IN CNAME s3
+s1 IN A 10.162.1.1
+s2 IN A 10.162.1.2
+s3 IN A 10.162.1.3
+s4 IN A 10.162.1.4
+g1 IN A 10.161.1.5
