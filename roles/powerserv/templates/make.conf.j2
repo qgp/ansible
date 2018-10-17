@@ -11,6 +11,9 @@ MAKEOPTS="-j {{ ansible_processor_vcpus }}"
 ACCEPT_KEYWORDS="~amd64"
 
 FEATURES="sandbox fakeroot parallel-fetch splitdebug buildpkg"
+{% if not power_master %}
+EMERGE_DEFAULT_OPTS="--getbinpkg --with-bdeps=y"
+{% endif %}
 
 PORTAGE_BINHOST="ssh://root@master.power.qgp.io/usr/portage/packages"
 

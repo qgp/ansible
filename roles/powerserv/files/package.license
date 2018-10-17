@@ -1,0 +1,3 @@
+>=app-editors/sublime-text-3126 Sublime
+# required by nvidia-cuda-toolkit (argument)
+>=dev-util/nvidia-cuda-toolkit-9.2.88 NVIDIA-CUDA
